@@ -1,0 +1,368 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
+body{
+    padding-top: 50px;
+}
+
+.font{
+    font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+/*.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}*/
+
+.row{
+    width: 100%;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+#principal{
+    margin: 0;
+    padding: 20px;
+}.
+
+.portafolio-item{
+    padding-left: 50px;
+}
+
+.thumbnail {
+    position:relative;
+    overflow:hidden;
+}
+
+.caption {
+    position:absolute;
+    top:0;
+    right:0;
+    background:rgba(66, 139, 202, 0.75);
+    width:100%;
+    height:100%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}
+
+ #wrapper {
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+    font-family: sans-serif;
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  background: black;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#wrapper.active {
+  padding-left: 0;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 0;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+  padding-left: 60px;
+}
+
+.sidebar-nav li a span:before {
+  position: absolute;
+  left: 0;
+  color: #41484c;
+  text-align: center;
+  width: 20px;
+  line-height: 18px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li.active {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+
+
+.content-header {
+  height: 65px;
+  line-height: 65px;
+}
+
+.content-header h1 {
+  margin: 0;
+  margin-left: 20px;
+  line-height: 65px;
+  display: inline-block;
+}
+
+.btn-menu {
+  color: black;
+    text-decoration-color: black;
+}
+.btn-menu:hover {
+    color: black;
+    text-decoration-color: black;
+}
+
+.inset {
+  padding: 20px;
+}
+
+@media (max-width:767px) {
+
+#wrapper {
+  padding-left: 0;
+}
+
+#sidebar-wrapper {
+  left: 0;
+}
+
+#wrapper.active {
+  position: relative;
+  left: 250px;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 250px;
+  width: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+.inset {
+  padding: 15px;
+}
+
+}
+
+.navbar-brand {
+}
+
+.navbar-brand>img {
+  height: 100%;
+    padding: 15px 15px 15px 25px;
+    width: auto;
+}
+/* EXAMPLE 6 - Background Logo*/
+.example6 .navbar-brand{
+  background: url('../img/LOGODIME1.png') center / contain no-repeat;
+  width: 200px;
+}
+
+#banner-center {
+        margin-top:-50px;
+    }
+@media only screen and (max-width: 800px) {
+    #banner-center {
+        margin-top:25px;
+    }
+}
+
+/*
+COLORES CATEGORIAS
+*/
+hr.audio{
+    border-top: 3px solid #4fc3cd;
+    margin: 10px 0px 10px 0px;
+}
+div.audio{
+    border: 5px solid #4fc3cd;
+    width: 100%;
+    background-color: #4fc3cd;
+    color: white;
+}
+
+hr.video{
+    border-top: 3px solid #61c339;
+    margin: 10px 0px 10px 0px;
+}
+div.video{
+    border: 5px solid #61c339;
+    width: 100%;
+    background-color: #61c339;
+    color: white;
+}
+
+hr.iluminacion{
+    border-top: 3px solid #ed1447;
+    margin: 10px 0px 10px 0px;
+}
+div.iluminacion{
+    border: 5px solid #ed1447;
+    width: 100%;
+    background-color: #ed1447;
+    color: white;
+}
+
+hr.escenarios{
+    border-top: 3px solid #1e6386;
+    margin: 10px 0px 10px 0px;
+}
+div.escenarios{
+    border: 5px solid #1e6386;
+    width: 100%;
+    background-color: #1e6386;
+    color: white;
+}
+
+hr.instrumentos-musicales{
+    border-top: 3px solid #f0481b;
+    margin: 10px 0px 10px 0px;
+}
+div.instrumentos-musicales{
+    border: 5px solid #f0481b;
+    width: 100%;
+    background-color: #f0481b;
+    color: white;
+}
+
+hr.oficinas-de-produccion{
+    border-top: 3px solid #bfc306;
+    margin: 10px 0px 10px 0px;
+}
+div.oficinas-de-produccion{
+    border: 5px solid #bfc306;
+    width: 100%;
+    background-color: #bfc306;
+    color: white;
+}
+
+hr.centros-de-espectaculo{
+    border-top: 3px solid #84151f;
+    margin: 10px 0px 10px 0px;
+}
+div.centros-de-espectaculo{
+    border: 5px solid #84151f;
+    width: 100%;
+    background-color: #84151f;
+    color: white;
+}
+
+hr.talento{
+    border-top: 3px solid #f79210;
+    margin: 10px 0px 10px 0px;
+}
+div.talento{
+    border: 5px solid #f79210;
+    width: 100%;
+    background-color: #f79210;
+    color: white;
+}
+
+hr.escuelas{
+    border-top: 3px solid #ee1795;
+    margin: 10px 0px 10px 0px;
+}
+div.escuelas{
+    border: 5px solid #ee1795;
+    width: 100%;
+    background-color: #ee1795;
+    color: white;
+}
+
+hr.dj{
+    border-top: 3px solid #607655;
+    margin: 10px 0px 10px 0px;
+}
+div.dj{
+    border: 5px solid #607655;
+    width: 100%;
+    background-color: #607655;
+    color: white;
+}
+
+hr.generales{
+    border-top: 3px solid #20487b;
+    margin: 10px 0px 10px 0px;
+}
+div.generales{
+    border: 5px solid #20487b;
+    width: 100%;
+    background-color: #20487b;
+    color: white;
+}
+
+hr.resultados{
+    border-top: 3px solid darkred;
+    margin: 10px 0px 10px 0px;
+}
+div.generales{
+    border: 5px solid darkred;
+    width: 100%;
+    background-color: darkred;
+    color: white;
+}

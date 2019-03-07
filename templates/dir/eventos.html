@@ -1,0 +1,315 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!--identity-->
+        <meta name="author" content="MUSITECH">
+        <meta name="descripcion" content="Directorio de la Musica y el Entretenimiento">
+        <title>DIME - Directorio de la Musica y el Entretenimiento</title>
+         <!--bootstrap css-->
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
+        <!--custom css-->
+        <link rel="stylesheet" href="{% static "css/custom.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/full-width-pics.css" %}">
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+        </head>
+        <body>
+            <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" id="menu-toggle" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span> Menu</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <form class="navbar-form navbar-right" id="form" role="form" action="{% url 'search_submit' %}" method="post">
+                    <div class="form-group">
+                        {% csrf_token %}
+                      <input class="form-control" name="search" id="search" type="search" placeholder="Nombre, Marca, etc">
+                    </div>
+                    <button class="btn btn-warning" type="submit">Buscar</button>
+                  </form>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li></li>
+                    <li class="active"><a href="#">Acerca De</a></li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Categorias <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        {% for categoria in categorias %}
+                            <li><a href="/dir/categoria/{{ categoria.slug }}">{{ categoria.nombre }}</a></li>
+                              <li class="divider"></li>
+                          {% endfor %}
+                      </ul>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#busquedaAvanzada">Busqueda Avanzada</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+                <div id="wrapper" data-spy="scroll" data-target="#spy" class="">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper" class="">
+                    <nav id="spy">
+                        <ul class="sidebar-nav nav">
+                            <li class="nav-divider"></li>
+                            <li class="sidebar-brand">
+                                <center>
+                                    <img class="img-responsive" src="{% static 'img/LOGODIME.png' %}" width="220px" style="padding-top: 18px;">
+                                </center>
+                            </li><br>
+                            <li class="nav-divider"></li>
+                            <li class="sidebar-brand font">
+                                <a href="/" class=""><span class="fa fa-home solo font"><strong style="font-family: sans-serif;">Inicio</strong></span></a>
+                            </li>
+                            <li class="">
+                                <a  href="javascript:history.go(-1);">
+                                            <span class="fa fa-arrow-left solo"><span style="font-family: sans-serif;"> Regresar</span></span>
+                                </a>
+                            </li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Page content -->
+                <div id="page-content-wrapper" class="">
+                <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a15f88663750b0012e6b893&product=sop' async='async'></script>
+                    <div class="page-content inset">
+                        <div class="row">
+                            <div class="container">
+                                <div class="col-lg-8">
+                                <div class="container-fluid">
+                                	<div class="portfolio-item">
+                                        <br>
+                                        <a href="http://{{ randomAddSuperior.url }}" target="_blank">
+                                        <img class="img-responsive" width="100%" src="{{ randomAddSuperior.imagen.url }}" alt="">
+                                        </a>
+                                        <br>
+                                    </div>
+                                </div>
+                                         <center>
+                                         <div class="">
+                                            <center>
+                                                <h3><strong>Eventos</strong></h3>
+                                            </center>
+                                         </div>
+                                         </center>
+                                         <br>
+                                            {% if eventos %}
+                                                {% load paginate %}
+                                                {% paginate 10 eventos%}
+                                                    {% for evento in eventos %}
+                                                    <div class="col-md-12 well">
+                                                            <h4 id="anch1" class=""><strong>{{ evento.nombre }}</strong></h4>
+                                                        <hr class="">
+                                                        <div class="col-lg-8">
+                                                            <p>{{ evento.fecha_inicio }} - {{ evento.fecha_final }}</p>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <center>
+                                                                <p><span style="font-size:1em;"><strong>{{ evento.lugar }}</strong></span></p>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                <br><br>
+                                                <div class="row">
+                                                    <div>
+                                                        <br>
+                                                        <center>
+                                                            {% show_pageitems %}
+                                                            <br><br>
+                                                            <nav class="overview-paging">
+                                                                {% show_pages %}
+                                                            </nav>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                            <p>No existen eventos</p>
+                                            {% endif %}
+                                         </div>
+                                         <div class="col-lg-4">
+                                            <div class="container-fluid portfolio-item">
+                                            <br>
+                                                <a href="http://{{ randomAddLateral1.url }}" target="_blank">
+                                                <img class="img-responsive" width="100%" src="{{ randomAddLateral1.imagen.url }}" alt="{{ randomAddLateral1.titulo }}">
+                                                </a>
+                                            </div>
+                                             <br>
+                                             <br>
+                                             <div class="container-fluid portfolio-item">
+                                            <br>
+                                                <a href="http://{{ randomAddLateral2.url }}" target="_blank">
+                                                <img class="img-responsive" width="100%" src="{{ randomAddLateral2.imagen.url }}" alt="{{ randomAddLateral2.titulo }}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_blank" class="">
+                        </a>
+                    </div><a href="#" target="_blank" class="">
+                    </a>
+                </div><a href="#" target="_blank" class="">
+                </a>
+            <!-- Modal -->
+            <div class="modal fade" id="busquedaAvanzada" tabindex="-1" role="dialog" aria-labelledby="Busqueda Avanzada" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <br><br>
+                    <form class="form-horizontal" id="formAdv" role="form" action="{% url 'search_adv' %}" method="POST">
+                                      <fieldset>
+                                        <legend>Busqueda Avanzada</legend>
+                                        {% comment %}<div class="form-group" hidden>
+                                          <label class="col-lg-4 control-label" for="select">Filtrar por Categoria</label>
+                                              <div class="col-lg-8">
+                                                <select class="form-control" id="selectCategoria">
+                                                    <option>Selecciona una Categoria</option>
+                                                    {% for categoria in categorias %}
+                                                        <option value="{{ categoria.slug }}">{{ categoria.nombre }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>{% endcomment %}
+                                      {% csrf_token %}
+                                        <div class="form-group">
+                                          <label class="col-lg-4 control-label" for="select">Filtrar por Clasificacion</label>
+                                              <div class="col-lg-8">
+                                                <select class="form-control" id="selectClasificacion" name="selectClasificacion">
+                                                  <option>Selecciona una Clasificación</option>
+                                                    {% for clasificacion in clasificaciones_list %}
+                                                        <option value="{{ clasificacion.id }}">{{ clasificacion.nombre }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label class="col-lg-4 control-label" for="select">Filtrar por Estado</label>
+                                              <div class="col-lg-8">
+                                                <select class="form-control" id="selectEstado"  name="selectEstado">
+                                                  {% for n,estado in estados_list %}
+                                                        <option value="{{ n }}">{{ estado }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                      {% comment %}
+                                        <div class="form-group">
+                                          <div class="checkbox">
+                                              <label>
+                                                <input type="checkbox"> Mayorista
+                                              </label>
+                                            </div>
+                                        </div>{% endcomment %}
+                                        <div class="form-group">
+                                          <div class="col-lg-10 col-lg-offset-5">
+                                              <button class="btn btn-warning" type="submit">Buscar</button>
+{#                                            <a href="http://127.0.0.1:8000/dir/clasificacion/grabacion-audio/" class="btn btn-primary" type="submit">Buscar</a><a href="http://127.0.0.1:8000/dir/categoria/oficinas-de-produccion/" class="" type="submit">.</a>#}
+                                          </div>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!--jq & bootstrap js-->
+        <script src="{% static "jquery/jquery-3.2.1.min.js" %}"></script>
+        <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+        <!-- modernize-->
+        <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+        <script src="{% static "js/main.js" %}"></script> <!-- Resource jQuery -->
+        <!--Compatibility Issues -->
+        <script src="{% static "ie/ie10-viewport-bug-workaround.js" %}"></script>
+        <link rel="stylesheet" href="{% static "ie/ie10-viewport-bug-workaround.css" %}">
+        <script>
+              $(document).ready(function() {
+                /*Menu-toggle*/
+                $("#menu-toggle").click(function(e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("active");
+                });
+
+                /*Scroll Spy*/
+                $('body').scrollspy({ target: '#spy', offset:80});
+
+                /*Smooth link animation*/
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+
+                    });
+        </script>
+        <script>
+                $(document).ready(function() {
+                    $("[rel='tooltip']").tooltip();
+
+                    $('.thumbnail').hover(
+                        function(){
+                            $(this).find('.caption').fadeIn(250)
+                        },
+                        function(){
+                            $(this).find('.caption').fadeOut(205)
+                        }
+                    );
+                });
+        </script>
+        <script>
+                $(document).ready(function(){
+                  // Add smooth scrolling to all links
+                  $("a").on('click', function(event) {
+
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                      // Prevent default anchor click behavior
+                      event.preventDefault();
+
+                      // Store hash
+                      var hash = this.hash;
+
+                      // Using jQuery's animate() method to add smooth page scroll
+                      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                      $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                      }, 800, function(){
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                      });
+                    } // End if
+                  });
+                });
+            </script>
+        </body>
+</html>

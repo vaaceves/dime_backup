@@ -1,0 +1,36 @@
+{% block search_results %}
+                                     {% if query %}
+                                        <center>
+                                         <div class="resultados">
+                                            <center>
+                                                <h3><strong>Resultados para: {{ query }} </strong></h3>
+                                            </center>
+                                         </div>
+                                         </center>
+                                         <br>
+                                        {% if companias %}
+                                            {% for contacto in companias %}
+                                            <div class="col-md-12 well">
+                                                <h4 id="anch1" class=""><strong>{{ contacto.compania }}</strong></h4>
+                                                <hr class="{{ clasificacion.categoria.slug }}">
+                                                <h5 id="anch1" class="">Categoria: <strong>{{ contacto.categoria }}</strong></h5>
+                                                <hr class="{{ clasificacion.categoria.slug }}">
+                                                <div class="col-lg-9">
+                                                    <p>{{ contacto.calle }}, {{ contacto.localidad}}, {{ contacto.ciudad }}, {{ contacto.get_estado_display }}</p>
+                                                    <p> || &nbsp;&nbsp; {{ contacto.codigo_postal}} &nbsp;&nbsp; || &nbsp;&nbsp; {{ contacto.telefono }} &nbsp;&nbsp;  ||
+                                                        <p><a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a>  - <a href="http://{{ contacto.pagina_web }}" target="_blank">{{ contacto.pagina_web }}</a></p>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <center>
+                                                        <p><span style="font-size:1.5em;">{{ contacto.get_estado_display }}</span></p>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            {% else %}
+                                            <p>No existen resultados para esta busqueda</p>
+                                            {% endif %}
+                                            {% else %}
+                                            <p>No existen resultados para esta busqueda</p>
+                                        {% endif %}
+{% endblock %}
